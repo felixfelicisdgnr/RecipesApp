@@ -1,13 +1,10 @@
-package com.doganur.recipesapp
+package com.doganur.recipesapp.activites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.doganur.recipesapp.R
 import com.doganur.recipesapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
