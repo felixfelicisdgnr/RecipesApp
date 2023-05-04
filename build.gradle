@@ -11,6 +11,9 @@ buildscript {
     dependencies {
         def nav_version = "2.5.3"
 
+        // Annotation processor
+
+
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")

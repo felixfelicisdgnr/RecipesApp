@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.doganur.recipesapp.activites.MealActivity
 import com.doganur.recipesapp.databinding.FragmentHomeBinding
+import com.doganur.recipesapp.pojo.Meal
 import com.doganur.recipesapp.videomodel.HomeViewModel
 
 
@@ -20,6 +21,12 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var homeMvvm : HomeViewModel
+    private lateinit var randomMeal : Meal
+    companion object {
+        const val MEAL_ID = "com.doganur.recipesapp.fragments.idMeal"
+        const val MEAL_NAME = "com.doganur.recipesapp.fragments.nameMeal"
+        const val MEAL_THUMB = "com.doganur.recipesapp.fragments.thumbMeal"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,16 +50,22 @@ class HomeFragment : Fragment() {
     private fun onRandomMealClick() {
         binding.cardRandomMeal.setOnClickListener {
             val intent = Intent(activity, MealActivity::class.java)
+            intent.putExtra(MEAL_ID, randomMeal.idMeal)
+            intent.putExtra(MEAL_NAME, randomMeal.strMeal)
+            intent.putExtra(MEAL_THUMB, randomMeal.strMealThumb)
+
             startActivity(intent)
         }
     }
 
     private fun observerRandomMeal() {
         homeMvvm.observeRandomMealLiveData().observe(viewLifecycleOwner
-        ) { value ->
+        ) { meal ->
             Glide.with(this@HomeFragment)
-                .load(value.strMealThumb)
+                .load(meal!!.strMealThumb)
                 .into(binding.imgRandomMeal)
+
+            this.randomMeal = meal
         }
     }
 
