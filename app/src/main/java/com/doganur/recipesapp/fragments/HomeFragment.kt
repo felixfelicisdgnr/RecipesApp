@@ -2,14 +2,18 @@ package com.doganur.recipesapp.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.doganur.recipesapp.activites.MealActivity
+import com.doganur.recipesapp.adapters.CategoriesAdapter
 import com.doganur.recipesapp.adapters.MostPopularAdapter
 import com.doganur.recipesapp.databinding.FragmentHomeBinding
 import com.doganur.recipesapp.pojo.MealsByCategory
@@ -26,6 +30,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeMvvm : HomeViewModel
     private lateinit var randomMeal : Meal
     private lateinit var popularItemsAdapter : MostPopularAdapter
+    private lateinit var categoriesAdapter: CategoriesAdapter
     companion object {
         const val MEAL_ID = "com.doganur.recipesapp.fragments.idMeal"
         const val MEAL_NAME = "com.doganur.recipesapp.fragments.nameMeal"
@@ -56,13 +61,28 @@ class HomeFragment : Fragment() {
         observerPopularItemsLiveData()
         onPopularItemClick()
 
-        homeMvvm.getPopularItems()
+        prepareCategoriesRecyclerView()//bunu neden buraya taşıdın?
+        homeMvvm.getCategories()
         observeCategoriesLiveData()
+
+
 
     }
 
-    private fun observeCategoriesLiveData() {
+    private fun prepareCategoriesRecyclerView() {
 
+        categoriesAdapter = CategoriesAdapter()
+
+        binding.rvViewCategories.apply {
+            layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
+            adapter = categoriesAdapter
+        }
+    }
+
+    private fun observeCategoriesLiveData() {
+        homeMvvm.observeCategoriesLiveData().observe(viewLifecycleOwner, Observer {categories ->
+                categoriesAdapter.setCategoryList(categories)
+        })
     }
 
     private fun onPopularItemClick() {

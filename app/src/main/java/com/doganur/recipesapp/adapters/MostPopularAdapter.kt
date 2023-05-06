@@ -17,7 +17,7 @@ class MostPopularAdapter() : RecyclerView.Adapter<MostPopularAdapter.PopularMeal
 
     fun setMeals(mealList: ArrayList<MealsByCategory>){
         this.mealsList = mealList
-        notifyDataSetChanged()
+        notifyItemChanged(mealsList.size)
     }
 
 
@@ -39,9 +39,9 @@ class MostPopularAdapter() : RecyclerView.Adapter<MostPopularAdapter.PopularMeal
         return mealsList.size
     }
 
-    inner class PopularMealViewHolder(var binding : PopularItemsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PopularMealViewHolder(var binding : PopularItemsBinding) : RecyclerView.ViewHolder(binding.root)
 
-    }
+
 
 
 }
