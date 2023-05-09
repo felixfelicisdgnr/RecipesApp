@@ -16,6 +16,7 @@
     <string name="detail_meal_category">Category : %s</string>
     <string name="detail_meal_area">Area : %s</string>
     <string name="category_name">Category Name</string>
+    <string name="deneme">deneme</string>
 
 
 </resources>
