@@ -12,8 +12,8 @@ import com.doganur.recipesapp.videomodel.CategoryMealsViewModel
 class CategoryMealsActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityCategoryMealsBinding
-    lateinit var categoryMealsViewModel : CategoryMealsViewModel
-    lateinit var categoryMealsAdapter : CategoryMealsAdapter
+    private lateinit var categoryMealsViewModel : CategoryMealsViewModel
+    private lateinit var categoryMealsAdapter : CategoryMealsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryMealsBinding.inflate(layoutInflater)
