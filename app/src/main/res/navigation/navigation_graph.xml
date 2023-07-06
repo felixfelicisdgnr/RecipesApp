@@ -3,32 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/listFragment">
-
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/listFragment"
-        android:name="com.doganur.recipesapp.ListFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
-        <action
-            android:id="@+id/action_listFragment_to_definitionFragment"
-            app:destination="@id/definitionFragment" />
-    </fragment>
+        android:id="@+id/categoriesFragment"
+        android:name="com.doganur.recipesapp.fragments.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
     <fragment
-        android:id="@+id/definitionFragment"
-        android:name="com.doganur.recipesapp.DefinitionFragment"
-        android:label="fragment_definition"
-        tools:layout="@layout/fragment_definition" >
-        <action
-            android:id="@+id/action_definitionFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-        <argument
-            android:name="info"
-            app:argType="string"
-            android:defaultValue="icomemenu" />
-        <argument
-            android:name="id"
-            app:argType="integer"
-            android:defaultValue="0" />
-    </fragment>
+        android:id="@+id/favouritesFragment"
+        android:name="com.doganur.recipesapp.fragments.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.doganur.recipesapp.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>
